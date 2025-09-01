@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shwe's Portfolio</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.net.min.js"></script>
+  <link rel="stylesheet" href="main.css">
+</head>
+<body>
+  <div id="vanta-bg"></div>
+  <div class="content-wrapper">
+    <nav>
+      <div class="logo">Shwe Wint War Phoo</div>
+      <ul>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+
+    <header>
+      <div class="header-content">
+        <div class="profile-wrapper">
+          <img src="./pf.png" alt="Profile Picture" class="profile-pic" />
+        </div>
+        <div class="header-text">
+          <h1>Hello... I'm Shwe Wint War Phoo</h1>
+          <p class="tagline">HR Specialist | International Relations</p>
+          <a href="./mycv.pdf" download="Shwe_Wint_War_Phoo_CV.pdf" class="cta-button">Download my Resume</a>
+        </div>
+      </div>
+    </header>
+
+    <section id="projects">
+      <h2 class="section-title">Projects</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>ASEAN MOBILITY PROGRAMME</h3>
+          <img src="./ASEAN.JPG" alt="" style="width: 100%; border-radius: 10px; margin: 10px 0;">
+          <p>Participated in a cross-cultural exchange program engaging with students from across Southeast Asia.</p>
+          <a href="#" class="read-more-button">Read More</a>
+        </div>
+        <div class="card">
+          <h3>Project HOPE</h3>
+          <img src="./PH.jpg" alt="" style="width: 100%; border-radius: 10px; margin: 10px 0;">
+          <p>Led a local initiative focused on empowering Rohingya refugee students through education and workshops.</p>
+          <a href="#" class="read-more-button">Read More</a>
+        </div>
+        <div class="card">
+          <h3>Youth Innovation Challenge</h3>
+          <img src="./YIC.jpeg" alt="" style="width: 100%; border-radius: 10px; margin: 10px 0;">
+          <p>Planned and executed campaigns on green initiatives in collaboration with Innovation Center.</p>
+          <a href="#" class="read-more-button">Read More</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="education">
+      <h2 class="section-title">Education</h2>
+      <div>
+        <div class="timeline-item">
+          <h3>Foundation in Arts</h3>
+          <span>Albukhary International University – 2024-2025</span>
+          <p>Completed a comprehensive foundation program focusing on financial accounting, marketing, law, critical thinking, and interdisciplinary studies.</p>
+        </div>
+        <div class="timeline-item">
+          <h3>Bachelor's degree in Business Administration (General)</h3>
+          <span>University of the People – 2023-Present</span>
+          <p>Currently pursuing a degree in Business Administration with a focus on management principles, organizational behavior, and strategic planning.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience">
+      <h2 class="section-title">Experience</h2>
+      <div>
+        <div class="timeline-item">
+          <h3>HR Specialist</h3>
+          <span>Islamic Institute of Burma – 2025–Present</span>
+          <p>Team management and recruitment with leadership responsibilities.</p>
+        </div>
+        <div class="timeline-item">
+          <h3>Head Teacher</h3>
+          <span>AIU Myanmar Student Association – 2024–2025</span>
+          <p>Taught refugee students in Alor Setar, Kedah, focusing on English and Math.</p>
+        </div>
+        <div class="timeline-item">
+          <h3>Student Brand Ambassador</h3>
+          <span>AIU Campus TV – 2025–Present</span>
+          <p>Promoted sustainability awareness through tech-enabled campus campaigns.</p>
+        </div>
+      </div>
+    </section>
+
+    <footer id="contact">
+      <h2>Contact Me</h2>
+      <p>Let's connect through my socials below:</p>
+      <div class="socialcontact">
+        <a href="mailto:shwewint.warphoo@student.aiu.edu.my"><i class="fa fa-envelope"></i></a>
+        
+        <a href="https://www.linkedin.com/in/shwe-wint-war-phoo-b88551349/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+      </div>
+      <p style="margin-top: 30px; font-size: 0.85rem;">&copy; 2025 Shwe Wint War Phoo. All rights reserved.</p>
+    </footer>
+
+    
+    <div id="floatingPage" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); z-index:9999; overflow:auto;">
+      <div style="max-width:700px; margin:80px auto; background:#1a1a1a; padding:30px; border-radius:12px; color:#f0f0f0; position:relative; box-shadow:0 0 20px #ffd700;">
+        <button onclick="closeFloatingPage()" style="position:absolute; top:10px; right:20px; background:none; border:none; font-size:1.5rem; color:#ffd700; cursor:pointer;">&times;</button>
+        <div id="floatingContent"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    
+    VANTA.NET({
+      el: "#vanta-bg",
+      mouseControls: true,
+      touchControls: true,
+      gyroControls: false,
+      minHeight: 200.00,
+      minWidth: 200.00,
+      scale: 1.00,
+      scaleMobile: 1.00,
+      color: 0xffd700,
+      backgroundColor: 0x0d0d0d,
+      points: 12.00,
+      maxDistance: 25.00,
+      spacing: 25.00
+    });
+
+    const projectData = {
+      "ASEAN MOBILITY PROGRAMME": `
+        <h2>ASEAN MOBILITY PROGRAMME</h2>
+        <img src="./ASEAN.JPG" alt="" style="width:100%; border-radius:10px; margin:20px 0;">
+        <p>Throughout the program, I took part in a wide range of enriching activities — from presenting at the ASEAN Young Speaker Contest, to attending workshops on sustainability and innovation, and collaborating with peers in the ASEAN Future Innovators Challenge. I also had the opportunity to discover the IIUM campus through the Inside IIUM Tour, celebrate diversity at ASEAN Unity Night, and engage in policy discussions during the Forum: One Vision, One Identity, One Community. These experiences greatly enhanced my appreciation of ASEAN values and highlighted the vital role of youth in shaping the region's future.</p>
+      `,
+      "Project HOPE": `
+        <h2>Project HOPE</h2>
+        <img src="./PH.jpg" alt="" style="width:100%; border-radius:10px; margin:20px 0;">
+        <p>As the lead coordinator, I spearheaded educational outreach and leadership training programs tailored for marginalized Rohingya refugee youths. I worked closely with community members to identify their unique challenges and designed initiatives that fostered both personal growth and collective empowerment. In this role, I developed sustainable learning modules that combined academic knowledge with practical life skills, ensuring the youths had access to tools that could support their long-term development. Beyond the training, I also emphasized mentorship and capacity building, aiming to inspire confidence, resilience, and a sense of agency among the participants.</p>
+      `,
+      "Youth Innovation Challenge": `
+        <h2>Youth Innovation Challenge</h2>
+        <img src="./YIC.jpeg" alt="" style="width:100%; border-radius:10px; margin:20px 0;">
+        <p>I collaborated with a diverse group of youth innovators to design and promote practical, sustainable solutions addressing pressing issues in waste management and energy conservation. Our teamwork involved research, brainstorming, and the integration of innovative ideas that balanced environmental responsibility with real-world applicability. Through this process, I contributed to developing strategies that not only raised awareness but also offered actionable approaches to sustainability challenges. The initiative culminated in a formal presentation at the National Innovation Forum, where we showcased our solutions to a wider audience of experts, policymakers, and fellow changemakers.</p>
+      `
+    };
+
+    document.querySelectorAll(".read-more-button").forEach(button => {
+      button.addEventListener("click", function(e) {
+        e.preventDefault();
+        const card = this.closest(".card");
+        const title = card.querySelector("h3").innerText.trim();
+        document.getElementById("floatingContent").innerHTML = projectData[title] || "<p>Details coming soon...</p>";
+        document.getElementById("floatingPage").style.display = "block";
+      });
+    });
+
+    function closeFloatingPage() {
+      document.getElementById("floatingPage").style.display = "none";
+    }
+  </script>
+
+</body>
+</html>
