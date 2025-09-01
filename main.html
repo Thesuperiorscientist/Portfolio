@@ -3,25 +3,684 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Shwe's Portfolio</title>
+  <title>Shwe Wint War Phoo | HR Specialist & International Relations</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
   
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.net.min.js"></script>
-  <link rel="stylesheet" href="main.css">
+  <style>
+    :root {
+      --primary: #ffd700;
+      --dark-bg: #0d0d0d;
+      --card-bg: rgba(26, 26, 26, 0.85);
+      --text-color: #f0f0f0;
+      --accent: #ffd700;
+      --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      color: var(--text-color);
+      line-height: 1.6;
+      overflow-x: hidden;
+      background: linear-gradient(-45deg, #0d0d0d, #1a1a2e, #16213e, #0f3460);
+      background-size: 400% 400%;
+      animation: gradient 15s ease infinite;
+      min-height: 100vh;
+    }
+
+    @keyframes gradient {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    #particles-js {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      z-index: -1;
+    }
+
+    .content-wrapper {
+      position: relative;
+      z-index: 1;
+    }
+
+    
+    nav {
+      background: rgba(17, 17, 17, 0.95);
+      backdrop-filter: blur(10px);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 40px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      transition: var(--transition);
+    }
+
+    nav.scrolled {
+      padding: 12px 40px;
+    }
+
+    nav .logo {
+      color: var(--accent);
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      font-family: 'Playfair Display', serif;
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 30px;
+    }
+
+    .nav-links li a {
+      color: var(--text-color);
+      text-decoration: none;
+      font-weight: 500;
+      transition: var(--transition);
+      position: relative;
+      padding: 6px 0;
+    }
+
+    .nav-links li a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--accent);
+      transition: var(--transition);
+    }
+
+    .nav-links li a:hover {
+      color: var(--accent);
+    }
+
+    .nav-links li a:hover::after {
+      width: 100%;
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      background: transparent;
+      border: none;
+      padding: 5px;
+    }
+
+    .hamburger span {
+      width: 25px;
+      height: 3px;
+      background: var(--accent);
+      margin: 3px 0;
+      transition: var(--transition);
+      border-radius: 2px;
+    }
+
+    .mobile-nav {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 70%;
+      height: 100vh;
+      background: rgba(13, 13, 13, 0.98);
+      backdrop-filter: blur(10px);
+      z-index: 1000;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      transition: right 0.4s ease;
+      box-shadow: -5px 0 25px rgba(0, 0, 0, 0.5);
+    }
+
+    .mobile-nav.active {
+      right: 0;
+    }
+
+    .mobile-nav-links {
+      list-style: none;
+      text-align: center;
+    }
+
+    .mobile-nav-links li {
+      margin: 25px 0;
+    }
+
+    .mobile-nav-links li a {
+      color: var(--text-color);
+      text-decoration: none;
+      font-size: 1.5rem;
+      font-weight: 600;
+      transition: var(--transition);
+      padding: 10px 20px;
+      display: block;
+    }
+
+    .mobile-nav-links li a:hover {
+      color: var(--accent);
+      transform: translateX(-10px);
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 25px;
+      right: 25px;
+      background: none;
+      border: none;
+      font-size: 1.8rem;
+      color: var(--accent);
+      cursor: pointer;
+    }
+
+    
+    header {
+      padding: 100px 20px;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+    }
+
+    .header-content {
+      max-width: 1200px;
+      margin: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 60px;
+      flex-wrap: wrap;
+    }
+
+    .profile-wrapper {
+      position: relative;
+      z-index: 2;
+    }
+
+    .profile-wrapper::before {
+      content: '';
+      position: absolute;
+      width: 280px;
+      height: 280px;
+      border-radius: 50%;
+      background: linear-gradient(45deg, var(--accent), transparent, var(--accent));
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: -1;
+      animation: pulse 3s infinite ease-in-out;
+    }
+
+    @keyframes pulse {
+      0% { width: 280px; height: 280px; opacity: 0.5; }
+      50% { width: 300px; height: 300px; opacity: 0.8; }
+      100% { width: 280px; height: 280px; opacity: 0.5; }
+    }
+
+    .profile-pic {
+      width: 260px;
+      height: 260px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid var(--accent);
+      transition: var(--transition);
+      display: block;
+      box-shadow: 0 0 40px rgba(255, 215, 0, 0.3);
+    }
+
+    .profile-pic:hover {
+      transform: scale(1.03);
+      box-shadow: 0 0 50px rgba(255, 215, 0, 0.5);
+    }
+
+    .header-text {
+      flex: 1;
+      text-align: left;
+    }
+
+    h1 {
+      font-size: 3.2rem;
+      color: var(--accent);
+      margin-bottom: 15px;
+      text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);
+      line-height: 1.2;
+      font-family: 'Playfair Display', serif;
+    }
+
+    .tagline {
+      font-size: 1.4rem;
+      color: #ddd;
+      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+      margin-bottom: 10px;
+      font-weight: 300;
+    }
+
+    .description {
+      font-size: 1.1rem;
+      color: #bbb;
+      max-width: 600px;
+      margin-bottom: 30px;
+    }
+
+    .cta-button {
+      display: inline-block;
+      margin-top: 25px;
+      padding: 14px 35px;
+      background: var(--accent);
+      color: #000;
+      text-decoration: none;
+      border-radius: 30px;
+      font-weight: 600;
+      box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+      transition: 0.5s;
+    }
+
+    .cta-button:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(255, 215, 0, 0.6);
+    }
+
+    .cta-button:hover::before {
+      left: 100%;
+    }
+
+    
+    section {
+      padding: 80px 20px;
+      background: rgba(13, 13, 13, 0.7);
+      backdrop-filter: blur(10px);
+      margin: 40px auto;
+      border-radius: 20px;
+      max-width: 1200px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      border: 1px solid rgba(255, 215, 0, 0.1);
+    }
+
+    h2.section-title {
+      text-align: center;
+      font-size: 2.2rem;
+      color: var(--accent);
+      margin-bottom: 50px;
+      text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+      position: relative;
+      padding-bottom: 15px;
+      font-family: 'Playfair Display', serif;
+    }
+
+    h2.section-title::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 3px;
+      background: var(--accent);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid rgba(255, 215, 0, 0.15);
+      border-radius: 16px;
+      padding: 25px;
+      text-align: center;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+      transition: var(--transition);
+      backdrop-filter: blur(5px);
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(255, 215, 0, 0.2);
+      border-color: rgba(255, 215, 0, 0.3);
+    }
+
+    .card-img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      transition: var(--transition);
+    }
+
+    .card:hover .card-img {
+      transform: scale(1.05);
+    }
+
+    .card h3 {
+      font-size: 1.3rem;
+      color: var(--accent);
+      margin-bottom: 15px;
+    }
+
+    .card p {
+      color: #ddd;
+      margin-bottom: 20px;
+      flex-grow: 1;
+    }
+
+    
+    .timeline {
+      position: relative;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 30px;
+      top: 0;
+      height: 100%;
+      width: 3px;
+      background: var(--accent);
+    }
+
+    .timeline-item {
+      margin-bottom: 40px;
+      position: relative;
+      padding-left: 80px;
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: 22px;
+      top: 6px;
+      width: 20px;
+      height: 20px;
+      background: var(--accent);
+      border-radius: 50%;
+      z-index: 2;
+    }
+
+    .timeline-content {
+      background: rgba(40, 40, 40, 0.6);
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      transition: var(--transition);
+    }
+
+    .timeline-item:hover .timeline-content {
+      transform: translateX(10px);
+      box-shadow: 0 8px 25px rgba(255, 215, 0, 0.15);
+    }
+
+    .timeline-content h3 {
+      font-size: 1.2rem;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+
+    .timeline-content span {
+      font-size: 0.9rem;
+      color: #aaa;
+      display: block;
+      margin-bottom: 12px;
+    }
+
+    .timeline-content p {
+      color: #ddd;
+    }
+
+    
+    footer {
+      background: rgba(17, 17, 17, 0.95);
+      color: var(--text-color);
+      text-align: center;
+      padding: 70px 20px 40px;
+      backdrop-filter: blur(5px);
+      margin-top: 80px;
+    }
+
+    .socialcontact {
+      margin-top: 30px;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .socialcontact a {
+      color: var(--dark-bg);
+      font-size: 1.6rem;
+      width: 55px;
+      height: 55px;
+      border-radius: 50%;
+      background: var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+    }
+
+    .socialcontact a:hover {
+      transform: translateY(-8px) scale(1.1);
+      background: #ffcc00;
+      box-shadow: 0 8px 15px rgba(255, 215, 0, 0.4);
+    }
+
+    .read-more-button {
+      display: inline-block;
+      padding: 10px 22px;
+      background: transparent;
+      color: var(--accent);
+      text-decoration: none;
+      border-radius: 25px;
+      font-weight: 500;
+      border: 2px solid var(--accent);
+      transition: var(--transition);
+    }
+
+    .read-more-button:hover {
+      background: var(--accent);
+      color: #000;
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+    }
+
+    
+    #floatingPage {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.9);
+      z-index: 9999;
+      overflow: auto;
+      backdrop-filter: blur(10px);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    #floatingPage.active {
+      opacity: 1;
+    }
+
+    .floating-content {
+      max-width: 800px;
+      margin: 80px auto;
+      background: rgba(30, 30, 30, 0.95);
+      padding: 40px;
+      border-radius: 16px;
+      color: #f0f0f0;
+      position: relative;
+      box-shadow: 0 0 40px rgba(255, 215, 0, 0.2);
+      border: 1px solid rgba(255, 215, 0, 0.2);
+      transform: translateY(20px);
+      transition: transform 0.4s ease;
+    }
+
+    #floatingPage.active .floating-content {
+      transform: translateY(0);
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      background: none;
+      border: none;
+      font-size: 1.8rem;
+      color: var(--accent);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .close-btn:hover {
+      transform: rotate(90deg);
+    }
+
+    
+    @media (max-width: 992px) {
+      .header-content {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .header-text {
+        text-align: center;
+      }
+      
+      .nav-links {
+        gap: 15px;
+      }
+      
+      h1 {
+        font-size: 2.5rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      nav {
+        padding: 15px 20px;
+      }
+      
+      .nav-links {
+        display: none;
+      }
+      
+      .hamburger {
+        display: flex;
+      }
+      
+      .hamburger.active span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+      }
+      
+      .hamburger.active span:nth-child(2) {
+        opacity: 0;
+      }
+      
+      .hamburger.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(7px, -6px);
+      }
+      
+      section {
+        padding: 60px 15px;
+      }
+      
+      .profile-wrapper::before {
+        width: 250px;
+        height: 250px;
+      }
+      
+      .profile-pic {
+        width: 220px;
+        height: 220px;
+      }
+      
+      h1 {
+        font-size: 2.2rem;
+      }
+      
+      .tagline {
+        font-size: 1.2rem;
+      }
+      
+      .timeline::before {
+        left: 20px;
+      }
+      
+      .timeline-item {
+        padding-left: 60px;
+      }
+      
+      .timeline-item::before {
+        left: 12px;
+      }
+    }
+  </style>
 </head>
 <body>
-  <div id="vanta-bg"></div>
+  <div id="particles-js"></div>
   <div class="content-wrapper">
-    <nav>
+    <nav id="navbar">
       <div class="logo">Shwe Wint War Phoo</div>
-      <ul>
+      <ul class="nav-links">
         <li><a href="#projects">Projects</a></li>
         <li><a href="#education">Education</a></li>
         <li><a href="#experience">Experience</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
+      <button class="hamburger" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
     </nav>
+
+    
+    <div class="mobile-nav" id="mobile-nav">
+      <button class="close-btn" id="close-nav">&times;</button>
+      <ul class="mobile-nav-links">
+        <li><a href="#projects" onclick="closeMobileNav()">Projects</a></li>
+        <li><a href="#education" onclick="closeMobileNav()">Education</a></li>
+        <li><a href="#experience" onclick="closeMobileNav()">Experience</a></li>
+        <li><a href="#contact" onclick="closeMobileNav()">Contact</a></li>
+      </ul>
+    </div>
 
     <header>
       <div class="header-content">
@@ -29,8 +688,9 @@
           <img src="./pf.png" alt="Profile Picture" class="profile-pic" />
         </div>
         <div class="header-text">
-          <h1>Hello... I'm Shwe Wint War Phoo</h1>
+          <h1>Hello, I'm Shwe Wint War Phoo</h1>
           <p class="tagline">HR Specialist | International Relations</p>
+          <p class="description">Dedicated professional with expertise in human resources and international relations, passionate about creating meaningful connections and driving positive change through education and empowerment.</p>
           <a href="./mycv.pdf" download="Shwe_Wint_War_Phoo_CV.pdf" class="cta-button">Download my Resume</a>
         </div>
       </div>
@@ -41,19 +701,19 @@
       <div class="grid">
         <div class="card">
           <h3>ASEAN MOBILITY PROGRAMME</h3>
-          <img src="./ASEAN.JPG" alt="" style="width: 100%; border-radius: 10px; margin: 10px 0;">
+          <img src="./ASEAN.JPG" alt="ASEAN Mobility Programme" class="card-img">
           <p>Participated in a cross-cultural exchange program engaging with students from across Southeast Asia.</p>
           <a href="#" class="read-more-button">Read More</a>
         </div>
         <div class="card">
           <h3>Project HOPE</h3>
-          <img src="./PH.jpg" alt="" style="width: 100%; border-radius: 10px; margin: 10px 0;">
+          <img src="./PH.jpg" alt="Project HOPE" class="card-img">
           <p>Led a local initiative focused on empowering Rohingya refugee students through education and workshops.</p>
           <a href="#" class="read-more-button">Read More</a>
         </div>
         <div class="card">
           <h3>Youth Innovation Challenge</h3>
-          <img src="./YIC.jpeg" alt="" style="width: 100%; border-radius: 10px; margin: 10px 0;">
+          <img src="./YIC.jpeg" alt="Youth Innovation Challenge" class="card-img">
           <p>Planned and executed campaigns on green initiatives in collaboration with Innovation Center.</p>
           <a href="#" class="read-more-button">Read More</a>
         </div>
@@ -62,37 +722,54 @@
 
     <section id="education">
       <h2 class="section-title">Education</h2>
-      <div>
+      <div class="timeline">
         <div class="timeline-item">
-          <h3>Foundation in Arts</h3>
-          <span>Albukhary International University – 2024-2025</span>
-          <p>Completed a comprehensive foundation program focusing on financial accounting, marketing, law, critical thinking, and interdisciplinary studies.</p>
+          <div class="timeline-content">
+            <h3>Foundation in Arts</h3>
+            <span>Albukhary International University – 2024-2025</span>
+            <p>Completed a comprehensive foundation program focusing on financial accounting, marketing, law, critical thinking, and interdisciplinary studies.</p>
+          </div>
         </div>
         <div class="timeline-item">
-          <h3>Bachelor's degree in Business Administration (General)</h3>
-          <span>University of the People – 2023-Present</span>
-          <p>Currently pursuing a degree in Business Administration with a focus on management principles, organizational behavior, and strategic planning.</p>
+          <div class="timeline-content">
+            <h3>Bachelor's degree in Business Administration (General)</h3>
+            <span>University of the People – 2023-Present</span>
+            <p>Currently pursuing a degree in Business Administration with a focus on management principles, organizational behavior, and strategic planning.</p>
+          </div>
         </div>
       </div>
     </section>
 
     <section id="experience">
       <h2 class="section-title">Experience</h2>
-      <div>
+      <div class="timeline">
         <div class="timeline-item">
-          <h3>HR Specialist</h3>
-          <span>Islamic Institute of Burma – 2025–Present</span>
-          <p>Team management and recruitment with leadership responsibilities.</p>
+          <div class="timeline-content">
+            <h3>HR Specialist</h3>
+            <span>Islamic Institute of Burma – 2025–Present</span>
+            <p>Team management and recruitment with leadership responsibilities.</p>
+          </div>
         </div>
         <div class="timeline-item">
-          <h3>Head Teacher</h3>
-          <span>AIU Myanmar Student Association – 2024–2025</span>
-          <p>Taught refugee students in Alor Setar, Kedah, focusing on English and Math.</p>
+          <div class="timeline-content">
+            <h3>Assistant Vice President</h3>
+            <span>E-Protech – 2024–2025</span>
+            <p>Assisting to Vice President and Coordinating Event at E-Protech Club at Albukhary International University.</p>
+          </div>
         </div>
         <div class="timeline-item">
-          <h3>Student Brand Ambassador</h3>
-          <span>AIU Campus TV – 2025–Present</span>
-          <p>Promoted sustainability awareness through tech-enabled campus campaigns.</p>
+          <div class="timeline-content">
+            <h3>Head Teacher</h3>
+            <span>AIU Myanmar Student Association – 2024–2025</span>
+            <p>Taught refugee students in Alor Setar, Kedah, focusing on English and Math.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <h3>Assistant</h3>
+            <span>Woman Transforming Myanmar – 2024</span>
+            <p>Scheduling meetings as an assistant and taking responsibilities between audience and founder.</p>
+          </div>
         </div>
       </div>
     </section>
@@ -102,53 +779,124 @@
       <p>Let's connect through my socials below:</p>
       <div class="socialcontact">
         <a href="mailto:shwewint.warphoo@student.aiu.edu.my"><i class="fa fa-envelope"></i></a>
-        
         <a href="https://www.linkedin.com/in/shwe-wint-war-phoo-b88551349/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
       </div>
       <p style="margin-top: 30px; font-size: 0.85rem;">&copy; 2025 Shwe Wint War Phoo. All rights reserved.</p>
     </footer>
 
-    
-    <div id="floatingPage" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); z-index:9999; overflow:auto;">
-      <div style="max-width:700px; margin:80px auto; background:#1a1a1a; padding:30px; border-radius:12px; color:#f0f0f0; position:relative; box-shadow:0 0 20px #ffd700;">
-        <button onclick="closeFloatingPage()" style="position:absolute; top:10px; right:20px; background:none; border:none; font-size:1.5rem; color:#ffd700; cursor:pointer;">&times;</button>
+    <div id="floatingPage">
+      <div class="floating-content">
+        <button class="close-btn" onclick="closeFloatingPage()">&times;</button>
         <div id="floatingContent"></div>
       </div>
     </div>
   </div>
 
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
   <script>
-    
-    VANTA.NET({
-      el: "#vanta-bg",
-      mouseControls: true,
-      touchControls: true,
-      gyroControls: false,
-      minHeight: 200.00,
-      minWidth: 200.00,
-      scale: 1.00,
-      scaleMobile: 1.00,
-      color: 0xffd700,
-      backgroundColor: 0x0d0d0d,
-      points: 12.00,
-      maxDistance: 25.00,
-      spacing: 25.00
+    document.addEventListener('DOMContentLoaded', function() {
+      particlesJS('particles-js', {
+        particles: {
+          number: { value: 80, density: { enable: true, value_area: 800 } },
+          color: { value: "#ffd700" },
+          shape: { type: "circle" },
+          opacity: { value: 0.5, random: true },
+          size: { value: 3, random: true },
+          line_linked: {
+            enable: true,
+            distance: 150,
+            color: "#ffd700",
+            opacity: 0.4,
+            width: 1
+          },
+          move: {
+            enable: true,
+            speed: 2,
+            direction: "none",
+            random: true,
+            straight: false,
+            out_mode: "out",
+            bounce: false
+          }
+        },
+        interactivity: {
+          detect_on: "canvas",
+          events: {
+            onhover: { enable: true, mode: "grab" },
+            onclick: { enable: true, mode: "push" },
+            resize: true
+          }
+        },
+        retina_detect: true
+      });
     });
+
+    
+    const hamburger = document.getElementById('hamburger');
+    const mobileNav = document.getElementById('mobile-nav');
+    const closeNav = document.getElementById('close-nav');
+    
+    function toggleMobileNav() {
+      hamburger.classList.toggle('active');
+      mobileNav.classList.toggle('active');
+      document.body.style.overflow = mobileNav.classList.contains('active') ? 'hidden' : '';
+    }
+    
+    function closeMobileNav() {
+      hamburger.classList.remove('active');
+      mobileNav.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+    
+    hamburger.addEventListener('click', toggleMobileNav);
+    closeNav.addEventListener('click', closeMobileNav);
+    
+    document.addEventListener('click', (e) => {
+      if (mobileNav.classList.contains('active') && 
+          !mobileNav.contains(e.target) && 
+          e.target !== hamburger && 
+          !hamburger.contains(e.target)) {
+        closeMobileNav();
+      }
+    });
+
+    window.addEventListener('scroll', function() {
+      const navbar = document.getElementById('navbar');
+      if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    });
+    
+    document.querySelectorAll('nav a, .mobile-nav-links a').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href');
+        const targetElement = document.querySelector(targetId);
+        
+        window.scrollTo({
+          top: targetElement.offsetTop - 80,
+          behavior: 'smooth'
+        });
+      });
+    });
+
 
     const projectData = {
       "ASEAN MOBILITY PROGRAMME": `
         <h2>ASEAN MOBILITY PROGRAMME</h2>
-        <img src="./ASEAN.JPG" alt="" style="width:100%; border-radius:10px; margin:20px 0;">
+        <img src="./ASEAN.JPG" alt="ASEAN Mobility Programme" style="width:100%; border-radius:10px; margin:20px 0;">
         <p>Throughout the program, I took part in a wide range of enriching activities — from presenting at the ASEAN Young Speaker Contest, to attending workshops on sustainability and innovation, and collaborating with peers in the ASEAN Future Innovators Challenge. I also had the opportunity to discover the IIUM campus through the Inside IIUM Tour, celebrate diversity at ASEAN Unity Night, and engage in policy discussions during the Forum: One Vision, One Identity, One Community. These experiences greatly enhanced my appreciation of ASEAN values and highlighted the vital role of youth in shaping the region's future.</p>
       `,
       "Project HOPE": `
         <h2>Project HOPE</h2>
-        <img src="./PH.jpg" alt="" style="width:100%; border-radius:10px; margin:20px 0;">
+        <img src="./PH.jpg" alt="Project HOPE" style="width:100%; border-radius:10px; margin:20px 0;">
         <p>As the lead coordinator, I spearheaded educational outreach and leadership training programs tailored for marginalized Rohingya refugee youths. I worked closely with community members to identify their unique challenges and designed initiatives that fostered both personal growth and collective empowerment. In this role, I developed sustainable learning modules that combined academic knowledge with practical life skills, ensuring the youths had access to tools that could support their long-term development. Beyond the training, I also emphasized mentorship and capacity building, aiming to inspire confidence, resilience, and a sense of agency among the participants.</p>
       `,
       "Youth Innovation Challenge": `
         <h2>Youth Innovation Challenge</h2>
-        <img src="./YIC.jpeg" alt="" style="width:100%; border-radius:10px; margin:20px 0;">
+        <img src="./YIC.jpeg" alt="Youth Innovation Challenge" style="width:100%; border-radius:10px; margin:20px 0;">
         <p>I collaborated with a diverse group of youth innovators to design and promote practical, sustainable solutions addressing pressing issues in waste management and energy conservation. Our teamwork involved research, brainstorming, and the integration of innovative ideas that balanced environmental responsibility with real-world applicability. Through this process, I contributed to developing strategies that not only raised awareness but also offered actionable approaches to sustainability challenges. The initiative culminated in a formal presentation at the National Innovation Forum, where we showcased our solutions to a wider audience of experts, policymakers, and fellow changemakers.</p>
       `
     };
@@ -160,13 +908,18 @@
         const title = card.querySelector("h3").innerText.trim();
         document.getElementById("floatingContent").innerHTML = projectData[title] || "<p>Details coming soon...</p>";
         document.getElementById("floatingPage").style.display = "block";
+        setTimeout(() => {
+          document.getElementById("floatingPage").classList.add("active");
+        }, 10);
       });
     });
 
     function closeFloatingPage() {
-      document.getElementById("floatingPage").style.display = "none";
+      document.getElementById("floatingPage").classList.remove("active");
+      setTimeout(() => {
+        document.getElementById("floatingPage").style.display = "none";
+      }, 300);
     }
   </script>
-
 </body>
 </html>
